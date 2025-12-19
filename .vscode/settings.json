@@ -3,5 +3,6 @@
   "files.autoSave": "afterDelay",
   "editor.tabSize": 2,
   "scm.compactFolders": false,
-  "terminal.integrated.defaultProfile.windows": "Command Prompt"
+  "terminal.integrated.defaultProfile.windows": "Command Prompt",
+  "java.compile.nullAnalysis.mode": "automatic"
 }
