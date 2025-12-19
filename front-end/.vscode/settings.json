@@ -5,3 +5,4 @@
   "scm.compactFolders": false,
   "terminal.integrated.defaultProfile.windows": "Command Prompt"
 }
+// files.autoSave -> 자동저장 기능

@@ -1,12 +1,16 @@
-import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import App from './App';
+import BookApp from './BookApp';
+import { BrowserRouter } from 'react-router';
+
 
 const root = ReactDOM.createRoot(document.querySelector('#root'));
 root.render(
+  // 각 파일 이동
   <>
-    <App />
+    <BrowserRouter>
+      <App/>
+    </BrowserRouter>
   </>
 );
 
