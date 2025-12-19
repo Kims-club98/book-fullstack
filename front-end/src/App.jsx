@@ -17,7 +17,6 @@ const App = () => {
           <Route path='/' exact={true} element={<HomePage />} /> {/*홈페이지 페이지 */}
           <Route path='/login' exact={true} element={<LoginForm />} /> {/*로그인 폼*/}
           <Route path='/dept' exact={true} element={<DeptList />} /> {/*부서 리스트 페이지*/}
-
         </Routes>
       </div>
     </>
