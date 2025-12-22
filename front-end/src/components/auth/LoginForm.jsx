@@ -4,9 +4,13 @@ import { useNavigate } from 'react-router'
 
 const LoginForm = () => {
   const navigate = useNavigate()
-  const handleLogin = () => {
-    loginGoogle()
-    navigate("/")
+  const handleLogin = async () => {
+    try {
+      await loginGoogle()
+      navigate("/")
+    } catch (error) {
+      console.error("로그인 실패", error)
+    }
   }
   return (
     <>

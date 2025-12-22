@@ -3,16 +3,13 @@ import { Link } from 'react-router'
 import { logout } from '../../service/authLogic'
 
 const Header = () => {
+  
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   // 로그인 성공시 이름이나 혹은 이메일 주소 담기
-  const [myName, setMyName] = useState(() => {
-    return window.localStorage.getItem("email")
-  })
+  const [myName, setMyName] = useState('')
   useEffect(() => {
     setMyName(window.localStorage.getItem("email"))
-    if(myName){
-      setIsLoggedIn(true)
-    }
+    setIsLoggedIn(true)
   },[])
   const handleLogout = () => {
     //로그아웃을 처리하기
