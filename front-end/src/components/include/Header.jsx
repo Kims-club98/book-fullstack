@@ -3,15 +3,27 @@ import { Link } from 'react-router'
 import { logout } from '../../service/authLogic'
 
 const Header = () => {
-  
+  console.log('Header시작')
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   // 로그인 성공시 이름이나 혹은 이메일 주소 담기
   const [myName, setMyName] = useState('')
   useEffect(() => {
+    console.log('effect')
     setMyName(window.localStorage.getItem("email"))
+/*
+문제 제기 - 아래와 같이 처리하면 즉 isLoggedIn을 무조건 true로 처리한다면
+로그인 상태가 풀렸을 경우 이메일 정보가 null인 경우가 발생할 수도 있다.
+로그인 상태가 풀렸다는 말은 로그아웃버튼을 보여주고 있는데 님 앞에는 빈문자열이
+출력되는 경우가 발생할 수도 있다는 것이다. 
+https://firebase.google.com/docs/auth/web/manage-users?hl=ko
+개선 하는 방법은 위 페이지에서 로그인이 풀렸는지 여부를 체크하는 함수를 통해서
+해결해야 한다. -> 정리함수
+*/
+    console.log(myName)
     setIsLoggedIn(true)
-  },[])
+  },[]) //의존성 배열이 빈깡통이면 최초 한번만
   const handleLogout = () => {
+    console.log('handleLogout')
     //로그아웃을 처리하기
     try {
       logout()
