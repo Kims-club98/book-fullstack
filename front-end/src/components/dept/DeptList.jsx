@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { deptListDB } from '../../service/deptLogic'
+import { deptListDB, deptListDB2 } from '../../service/deptLogic'
 
 const DeptList = () => {
   useEffect(() => {
@@ -9,7 +9,7 @@ const DeptList = () => {
         dname: '영업부',
         loc: '대전'
       }
-      const res = await deptListDB(dept)
+      const res = await deptListDB2(dept)
       console.log(res.data)
     }
     deptList()

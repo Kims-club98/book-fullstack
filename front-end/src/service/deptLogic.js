@@ -1,8 +1,29 @@
 import axios from 'axios'
 
-export const deptListDB = async (param) => {
+export const deptListDB = async (data) => {
+  console.log(data)
   try {
-    const res = await axios.get(`${process.env.REACT_APP_TOMCAT_IP}dept`,{param})
+    const res = await axios({
+      method: 'get',
+      url: process.env.REACT_APP_TOMCAT_IP+'dept',
+      params: data
+    })
+    console.log(res.data)
+    return res 
+  } catch (error) {
+    console.error("부서목록 가져오기 실패!!!", error)
+    //호출한 쪽에서 catch하도록 다시 던져 줄때
+    throw error
+  }
+}//end of deptListDB
+
+export const deptListDB2 = async (data) => {
+  console.log('deptListDB2 호출')
+  console.log(data)
+  try {
+    //만일 파라미터로 값을 넘길 때 속성이름과 객체리터럴 변수명이 같다면 생략이 가능함.
+    //const res = await axios.get(process.env.REACT_APP_TOMCAT_IP+'dept',{params})
+    const res = await axios.get(process.env.REACT_APP_TOMCAT_IP+'dept',{params:data})
     console.log(res.data)
     return res 
   } catch (error) {
