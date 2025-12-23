@@ -1,10 +1,12 @@
 import {
   GoogleAuthProvider,
   getAuth,
+  onAuthStateChanged,
   signInWithPopup,
   signOut,
 } from "firebase/auth";
 import app from "./firebase"
+//import { useCallback } from "react";
 export const auth = getAuth(app)
 export const googleProvider = new GoogleAuthProvider()
 /*
@@ -47,3 +49,9 @@ export const logout = async () => {
 /*
   구글 인증 상태 변화 감지
 */
+export const subscribAuth = (callback) => {
+  console.log('subscribeAuth')
+  return onAuthStateChanged(auth, (user) => {
+    callback(user)
+  })
+}
