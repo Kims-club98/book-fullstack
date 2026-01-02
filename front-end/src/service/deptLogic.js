@@ -33,6 +33,7 @@ export const deptUpdateDB = async (data) => {
 
 export const deptListDB = async (data) => {
   console.log(data)
+  
   try {
     const res = await axios({
       method: 'get',
@@ -46,6 +47,7 @@ export const deptListDB = async (data) => {
     //호출한 쪽에서 catch하도록 다시 던져 줄때
     throw error
   }
+    
 }//end of deptListDB
 
 // delete from dept where deptno = 61

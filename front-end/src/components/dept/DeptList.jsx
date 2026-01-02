@@ -10,7 +10,8 @@ const DeptList = () => {
         loc: '대전'
       }
       const res = await deptListDB(dept)
-      console.log(res.data)
+      console.log(res)
+      //console.log(res.data)
     }
     deptList()
   },[])//의존성배열이 빈통이면 최초 한 번만 호출된다.
