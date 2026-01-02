@@ -5,7 +5,7 @@ export const deptInsertDB = async (data) => {
   try {
     const res = await axios({
       method: 'post',
-      url: process.env.REACT_APP_TOMCAT_IP+'dept',
+      url: process.env.REACT_APP_SPRING_IP+'deptInsert',
       data: data
     })
     console.log(res.data)
@@ -15,12 +15,28 @@ export const deptInsertDB = async (data) => {
   }
 }//end of deptInsertDB
 
+export const deptUpdateDB = async (data) => {
+  console.log(data)
+  try {
+    const res = await axios({
+      method: 'put',
+      url: process.env.REACT_APP_SPRING_IP+'deptUpdate',
+      data: data
+    })
+    console.log(res.data)
+    return res
+  } catch (error) {
+    console.error("부서등록 실패!!!", error)    
+  }
+}//end of deptInsertDB
+
+
 export const deptListDB = async (data) => {
   console.log(data)
   try {
     const res = await axios({
       method: 'get',
-      url: process.env.REACT_APP_TOMCAT_IP+'dept',
+      url: process.env.REACT_APP_SPRING_IP+'deptList',
       params: data
     })
     console.log(res.data)
@@ -32,33 +48,20 @@ export const deptListDB = async (data) => {
   }
 }//end of deptListDB
 
-export const deptListDB2 = async (data) => {
-  console.log('deptListDB2 호출')
-  console.log(data)
+// delete from dept where deptno = 61
+export const deptDeleteDB = async (deptno) => {
+  console.log(deptno) // 61번
   try {
-    //만일 파라미터로 값을 넘길 때 속성이름과 객체리터럴 변수명이 같다면 생략이 가능함.
-    //const res = await axios.get(process.env.REACT_APP_TOMCAT_IP+'dept',{params})
-    const res = await axios.get(process.env.REACT_APP_TOMCAT_IP+'dept',{params:data})
+    const res = await axios({
+      method: 'delete',
+      url: process.env.REACT_APP_SPRING_IP+'deptDelete',
+      params: {'deptno': deptno}
+    })
     console.log(res.data)
     return res 
   } catch (error) {
-    console.error("부서목록 가져오기 실패!!!", error)
+    console.error("부서삭제 실패!!!", error)
     //호출한 쪽에서 catch하도록 다시 던져 줄때
     throw error
   }
-}//end of deptListDB2
-
-export const deptListDB3 = async (params) => {
-  console.log('deptListDB3 호출')
-  console.log(params)
-  try {
-    //만일 파라미터로 값을 넘길 때 속성이름과 객체리터럴 변수명이 같다면 생략이 가능함.
-    const res = await axios.get(process.env.REACT_APP_TOMCAT_IP+'dept',{params})
-    console.log(res.data)
-    return res 
-  } catch (error) {
-    console.error("부서목록 가져오기 실패!!!", error)
-    //호출한 쪽에서 catch하도록 다시 던져 줄때
-    throw error
-  }
-}//end of deptListDB3
+}//end of deptListDB
