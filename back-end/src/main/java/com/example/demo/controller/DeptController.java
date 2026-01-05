@@ -53,13 +53,13 @@ public class DeptController {
 		return temp;// application/json
 	}
 
-	@GetMapping("deptDetail")
+	@GetMapping("dept/deptDetail")
 	public String deptDetail() {
 		log.info("deptDetail호출");
 		return "deptDetail";
 	}
 
-	@PostMapping("deptInsert")
+	@PostMapping("dept/deptInsert")
 	public String deptInsert(@RequestBody Map<String, Object> pmap) {
 		log.info("deptInsert호출");
 		log.info(pmap);
@@ -69,7 +69,7 @@ public class DeptController {
 		// return "입력성공|실패";
 	}
 
-	@PutMapping("deptUpdate")
+	@PutMapping("dept/deptUpdate")
 	public String deptUpdate(@RequestBody Map<String, Object> pmap) {
 		log.info("deptUpdate호출");
 		int result = 0;
@@ -78,7 +78,7 @@ public class DeptController {
 	}
 	// http://localhost:8000/dept/deptDelete?deptno=61
 	// http://localhost:8000/dept/61
-	@DeleteMapping("deptDelete")
+	@DeleteMapping("dept/deptDelete")
 	public String deptDelete(DeptVO dvo) {
 		log.info("deptDelete호출");
 		log.info("사용자가 선택한 부서 번호 : "+dvo);

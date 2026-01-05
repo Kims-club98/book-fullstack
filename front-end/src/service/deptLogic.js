@@ -1,5 +1,18 @@
 import axios from 'axios'
+
+// 아래 코드는 요청시마다 반복되는 코드가 있다.  
+// 공통 axios인스턴스화 한다면 개선할 수 있다.
+const api = axios.create({
+  baseURL: process.env.REACT_APP_SPRING_IP, // 예: http://localhost:8000/,
+  timeout: 10000
+})
+
 // 서블릿에게 부서 등록 요청하기
+export const deptInsertDB = async (data) => {
+  const res = await api.post('dept/deptInsert', data)
+  return res.data 
+}
+/*
 export const deptInsertDB = async (data) => {
   console.log(data)
   try {
@@ -14,7 +27,14 @@ export const deptInsertDB = async (data) => {
     console.error("부서등록 실패!!!", error)    
   }
 }//end of deptInsertDB
+*/
 
+//부서 수정하기
+export const deptUpdateDB = async (data) => {
+  const res = await api.put('dept/deptUpdate',data)
+  return res.data //1이면 수정성공, 0이면 수정 실패
+}//end of deptUpdateDB
+/*
 export const deptUpdateDB = async (data) => {
   console.log(data)
   try {
@@ -29,8 +49,14 @@ export const deptUpdateDB = async (data) => {
     console.error("부서등록 실패!!!", error)    
   }
 }//end of deptInsertDB
+*/
 
-
+// 부서목록 조회
+export const deptListDB = async (data) => {
+  const res = await api.get('dept/deptList',{params: data})
+  return res.data 
+}//end of deptListDB
+/*
 export const deptListDB = async (data) => {
   console.log(data)
   
@@ -49,8 +75,18 @@ export const deptListDB = async (data) => {
   }
     
 }//end of deptListDB
+*/
 
 // delete from dept where deptno = 61
+// 부서 정보 삭제하기
+export const deptDeleteDB = async (deptno) => {
+  const dept = {
+    deptno: deptno,
+  }
+  const res = await api.delete('',{params:dept})
+  return res.data //1이면 삭제 성공, 0이면 삭제 실패 
+}
+/*
 export const deptDeleteDB = async (deptno) => {
   console.log(deptno) // 61번
   try {
@@ -67,3 +103,4 @@ export const deptDeleteDB = async (deptno) => {
     throw error
   }
 }//end of deptListDB
+*/
