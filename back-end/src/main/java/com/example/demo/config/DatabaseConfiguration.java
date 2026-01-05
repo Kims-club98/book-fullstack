@@ -53,7 +53,12 @@ public class DatabaseConfiguration {
         }
         return sqlSessionFactoryBean.getObject();
     }
-
+    //mybatis-spring.jar -> SqlSessionTemplate -> 쿼리문을 요청하기 -> selectList, insert,
+    //update, delete
+    //객체 생성이 안된 상태에서 호출하면 NPE(NullPointerException)
+    //필요할 때 스프링 컨테이너가 대신(자동관리) 필요한 객체를 주입해줌.
+    //스프링에서는 빈을 관리하는 클래스가 2 가지 있다.
+    //BeanFactory(spring-bean.jar),< ApplicationContext(spring-context.jar)
     @Bean
     public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) {
         return new SqlSessionTemplate(sqlSessionFactory);
