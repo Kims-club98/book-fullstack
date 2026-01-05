@@ -53,6 +53,7 @@ export const deptUpdateDB = async (data) => {
 
 // 부서목록 조회
 export const deptListDB = async (data) => {
+  console.log(data)
   const res = await api.get('dept/deptList',{params: data})
   return res.data 
 }//end of deptListDB
