@@ -64,6 +64,21 @@ const DeptList = () => {
     setLoc(value)
   }
 
+  // 조건 검색 후 keyword와 searchType에 대한 초기화
+  const handleReset =(value) => {
+    /*아래와 같이 상태값을 바꾸더라도 즉시 변수에 값을 바꿔주는 것이 아닌
+      React가 배치처리(비동기) 하면서 곹 상태를 업데이트한다. - time line이 중요함
+      그래서 바로 getDeptList()를 호출하면 그 순간 getDeptList안에서 참조하는
+      keyword가 아직 이전 값일 수 있음 -> 이러한 issue가 있을 수 있으므로, setKeyword와 setSearchType 업데이트 처리할 시간을 벌어줘야 한다. (setTImeout)
+    */
+
+    // 키워드, 찾기 타입, 리스트를 공백으로...
+      setKeyword('')
+      setSearchType('')
+      getDeptList(',') // 
+    
+  } 
+
   return (
     <>
       <div className="container">
@@ -94,7 +109,7 @@ const DeptList = () => {
 		    <div className="col-3">
 			    <button className='btn btn-danger' id="btn_search" onClick={reactSearch}>검색</button>
           &nbsp;
-          <button className='btn btn-dark'>초기화</button>
+          <button className='btn btn-dark' onClick={handleReset}>초기화</button>
 		    </div>
 	     </div> 
       <div className={styles.deptlist}>
