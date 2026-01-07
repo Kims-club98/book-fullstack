@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.example.demo.service.DeptService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,6 +39,14 @@ http://localhost:8000/dept/deptDelete
 @RestController
 //@RequestMapping("/dept/*")
 public class DeptController {
+    //@Autowired - 교육용, 연습용 -setter객체주입법
+    //private DeptService deptService // 변수 이름은 줄여쓰지 않는다.
+
+    // 아래 코드는 생성자 주입 방식 ▼
+    //@RequiredArgsConstructor 사용하면서 final 필드를 null로 초기화 안됨
+    // 즉 lombok이 생성자를 생성할 때 이미 초기화 된 값 null을 사용하게 되어서 의존성 주입을 받지 못한다...
+
+
 	@Autowired
 	private DeptService deptService;// 변수 이름은 줄여쓰지 않음.
 
