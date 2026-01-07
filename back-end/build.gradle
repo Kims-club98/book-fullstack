@@ -32,7 +32,9 @@ dependencies {
 	//오라클 드라이버 클래스 로딩
 	implementation("com.oracle.database.jdbc:ojdbc11:21.20.0.0")
 	//한글 이슈
-  implementation("com.oracle.database.nls:orai18n:21.20.0.0")	
+  implementation("com.oracle.database.nls:orai18n:21.20.0.0")
+    // build.gradle
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation("com.google.code.gson:gson:2.13.2")
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	compileOnly 'org.projectlombok:lombok'
