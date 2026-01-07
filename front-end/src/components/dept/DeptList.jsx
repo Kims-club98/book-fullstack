@@ -4,8 +4,11 @@ import styles from './dept.module.css'
 import DeptRow from './DeptRow'
 import { Button, Modal } from 'react-bootstrap'
 import { MyInput, MyLabel, MyLabelAb } from '../style/FormStyle'
+import { Navigate, useNavigate } from 'react-router'
+import { deptInsertDB } from '../service/deptLogic'
 
 const DeptList = () => {
+  const navigate = useNavigate()
   const [deptList, setDeptList] = useState([])
   const [ deptno, setDeptno ] = useState(0)
   const [ dname, setDname] = useState('')
@@ -14,7 +17,9 @@ const DeptList = () => {
   const [keyword,setKeyword] = useState('')
   // deptno, dname, loc
   const [searchType, setSearchType] = useState('')
-  
+  // 등록이 성공하면 상태값을 0에서 1로 변경시켜준다. (새롭게 Rendering이 일어남)
+  // 부서 목록을 가져오는 useEffect에 의존성 배열에state를 추가해준다.
+  const [state, setState] = useState(0)
   const getDeptList = async() => {
     const dept = {
       deptno: 0,
@@ -50,6 +55,18 @@ const DeptList = () => {
   // json -> 객체
   // 객체 -> json
   const deptInsert = async () => {
+    // 클릭 시 DB에 관련 내역이 들어가야 함
+    const dept = {
+      deptno: deptno,
+      dname: dname,
+      loc: loc
+    }
+    //모달 자동으로 닫기
+    handleClose()
+    const res = await deptInsertDB(dept) // dept값을 db에 넣은 것을 res
+    if(res !== 1){console.log("부서등록 실패")}else {
+    navigate('')
+    setState((prev) => prev)}// 성공 -> 페이지를 이동함(dept로...)
 
   }
   const handleDeptno = (value) => {
@@ -65,7 +82,7 @@ const DeptList = () => {
   }
 
   // 조건 검색 후 keyword와 searchType에 대한 초기화
-  const handleReset =(value) => {
+  const handleReset =() => {
     /*아래와 같이 상태값을 바꾸더라도 즉시 변수에 값을 바꿔주는 것이 아닌
       React가 배치처리(비동기) 하면서 곹 상태를 업데이트한다. - time line이 중요함
       그래서 바로 getDeptList()를 호출하면 그 순간 getDeptList안에서 참조하는
@@ -74,9 +91,7 @@ const DeptList = () => {
 
     // 키워드, 찾기 타입, 리스트를 공백으로...
       setKeyword('')
-      setSearchType('')
-      getDeptList(',') // 
-    
+      setSearchType('')   
   } 
 
   return (

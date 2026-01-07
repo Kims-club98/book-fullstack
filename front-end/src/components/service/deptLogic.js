@@ -60,7 +60,7 @@ export const deptUpdateDB = async (data) => {
 // 부서 목록 조회 - type, 데이터셋 구조, json, [] {} []
 export const deptListDB = async (data) => {
   console.log(data) // deptno, dname, loc, keyword, searchType
-  const res = await api.get('deptList',{params: data})
+  const res = await api.get('dept/deptList',{params: data})
   console.log(res)
   return res.data
 }// end of deptListDB(新方式)
@@ -87,8 +87,12 @@ export const deptListDB = async (data) => {
 
 //부서 삭제하기
 export const deptDeleteDB = async (deptno) => {
-  const res = await api.delete('dept/deptDelete',{params: deptno})
+  const dept = {
+    deptno: deptno
+  }
+  const res = await api.delete('',{params: deptno})
   return res.data// 1이면 삭제 성공, 0이면 삭제 실패
+  
 }// end of deptDeleteDB(新方式)
 
 /*
